@@ -36,7 +36,7 @@ const Signup = () => {
       .then((result) =>
         result.user
           .updateProfile({
-            display: firstName,
+            displayName: firstName,
             photoURL: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
