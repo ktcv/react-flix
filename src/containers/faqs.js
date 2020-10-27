@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion } from '../components'
-import Optin from '../components/optin'
+import { Optin } from '../components'
 import faqsData from '../fixtures/faq.json'
 
 const FaqsContainer = () => {
