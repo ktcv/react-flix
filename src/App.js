@@ -1,23 +1,44 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Home, Browse, Signup, Signin } from './pages'
 import * as ROUTES from './constants/routes'
+import { IsUserRedirect, ProtectedRoute } from './helpers/routes'
 
 const App = () => {
+  const user = null
+
   return (
     <Router>
-      <Route path={ROUTES.HOME} exact>
+      <IsUserRedirect
+        user={user}
+        loggedInPath={ROUTES.BROWSE}
+        path={ROUTES.HOME}
+        exact
+      >
         <Home />
-      </Route>
-      <Route path={ROUTES.BROWSE} exact>
+      </IsUserRedirect>
+
+      <ProtectedRoute user={user} path={ROUTES.BROWSE} exact>
         <Browse />
-      </Route>
-      <Route path={ROUTES.SIGNUP} exact>
+      </ProtectedRoute>
+
+      <IsUserRedirect
+        user={user}
+        loggedInPath={ROUTES.BROWSE}
+        path={ROUTES.SIGNUP}
+        exact
+      >
         <Signup />
-      </Route>
-      <Route path={ROUTES.SIGNIN} exact>
+      </IsUserRedirect>
+
+      <IsUserRedirect
+        user={user}
+        loggedInPath={ROUTES.BROWSE}
+        path={ROUTES.SIGNIN}
+        exact
+      >
         <Signin />
-      </Route>
+      </IsUserRedirect>
     </Router>
   )
 }
