@@ -1,7 +1,7 @@
 import React from 'react'
 import { LockBody, ReleaseBody, Spinner, Picture } from './styles'
 
-export default function Loading({ src, ...restProps }) {
+const Loading = ({ src, ...restProps }) => {
   return (
     <Spinner {...restProps}>
       <LockBody />
@@ -9,7 +9,8 @@ export default function Loading({ src, ...restProps }) {
     </Spinner>
   )
 }
+export default Loading
 
-Loading.ReleaseBody = function LoadingReleaseBody() {
+Loading.ReleaseBody = () => {
   return <ReleaseBody />
 }

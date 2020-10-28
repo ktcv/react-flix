@@ -5,7 +5,7 @@ const ToggleContext = createContext()
 
 const Accordion = ({ children, ...props }) => {
   return (
-    <Container>
+    <Container {...props}>
       <Inner>{children}</Inner>
     </Container>
   )
@@ -42,7 +42,7 @@ Accordion.Header = function AccordionHeader({ children, ...props }) {
 }
 
 Accordion.Body = function AccordionBody({ children, ...props }) {
-  const { toggleShow, setToggleShow } = useContext(ToggleContext)
+  const { toggleShow } = useContext(ToggleContext)
 
   return toggleShow ? <Body {...props}>{children}</Body> : null
 }
