@@ -22,7 +22,7 @@ Player.Video = function PlayerVideo({ src, ...props }) {
     ? ReactDOM.createPortal(
         <Overlay onClick={() => setShowPlayer(false)} {...props}>
           <Inner>
-            <video id='flix-player' controls autoPlay full>
+            <video id='flix-player' controls autoPlay>
               <source src={src} type='video/mp4' />
             </video>
             <Close />
