@@ -18,7 +18,7 @@ const useContent = (target) => {
         setContent(allContent)
       })
       .catch((error) => console.error(error.message))
-  }, [])
+  }, []) // eslint-disable-line
 
   return { [target]: content }
 }
