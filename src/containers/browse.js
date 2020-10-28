@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import SelectProfileContainer from './profiles'
 import { FirebaseContext } from '../context/firebase'
 import { Header, Loading, Card, Player } from '../components'
+import Fuse from 'fuse.js'
 import FooterContainer from './footer'
 import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
@@ -25,6 +26,19 @@ const BrowseContainer = ({ slides }) => {
   useEffect(() => {
     setSlideRows(slides[category])
   }, [slides, category])
+
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ['data.title', 'data.genre'],
+    })
+    const results = fuse.search(searchTerm).map(({ item }) => item)
+
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(results)
+    } else {
+      setSlideRows(slides[category])
+    }
+  }, [searchTerm]) // eslint-disable-line
 
   return profile.displayName ? (
     <>
